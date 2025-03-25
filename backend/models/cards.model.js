@@ -8,6 +8,11 @@ const cardSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // type of the card
+    type: {
+        type: String,
+        required: false
+    },
     // cost of the card
     cost: {
         type: Number,
@@ -21,6 +26,46 @@ const cardSchema = new mongoose.Schema({
     // hit points of the card
     hp: {
         type: Number,
+        required: false
+    },
+    uppower: {
+        type: Number,
+        required: false
+    },
+    uphp: {
+        type: Number,
+        required: false
+    },
+    aspect: {
+        type: String,
+        required: false
+    },
+    arena: {
+        type: String,
+        required: false
+    },
+    trait: {
+        type: String,
+        required: false
+    },
+    rarity: {
+        type: String,
+        required: false
+    },
+    set: {
+        type: String,
+        required: false
+    },
+    artist: {
+        type: String,
+        required: false
+    },
+    cardno: {
+        type: Number,
+        required: false
+    },
+    image: {
+        type: String,
         required: false
     },
 }, {
