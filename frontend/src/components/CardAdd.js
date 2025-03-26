@@ -15,13 +15,13 @@ const CardAdd = ({ onCardAdded }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input name="name" onChange={handleChange} placeholder="Name" required />
-            <input name="type" onChange={handleChange} placeholder="Type" />
-            <input name="cost" type="number" onChange={handleChange} placeholder="Cost" />
-            <input name="power" type="number" onChange={handleChange} placeholder="Power" />
-            <input name="hp" type="number" onChange={handleChange} placeholder="HP" />
-            <button type="submit">Add Card</button>
+        <form onSubmit={handleSubmit} className="add-form">
+            <input name="name" onChange={handleChange} placeholder="Name" required className="input-field" />
+            <input name="type" onChange={handleChange} placeholder="Type" className="input-field" />
+            <input name="cost" type="number" onChange={handleChange} placeholder="Cost" className="input-field" />
+            <input name="power" type="number" onChange={handleChange} placeholder="Power" className="input-field" />
+            <input name="hp" type="number" onChange={handleChange} placeholder="HP" className="input-field" />
+            <button type="submit" className="add-button">Add Card</button>
         </form>
     );
 };

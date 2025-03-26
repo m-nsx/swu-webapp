@@ -21,19 +21,20 @@ const CardDelete = ({ onCardDeleted }) => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleDelete}>
+        <div className="card-delete">
+            <form onSubmit={handleDelete} className="delete-form">
                 <label>
                     Card ID:
                     <input
                         type="text"
                         value={cardId}
                         onChange={(e) => setCardId(e.target.value)}
+                        className="input-field"
                     />
                 </label>
-                <button type="submit">Delete Card</button>
+                <button type="submit" className="delete-button">Delete Card</button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p className="message">{message}</p>}
         </div>
     );
 };
