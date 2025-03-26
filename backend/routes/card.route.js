@@ -38,7 +38,7 @@ router.get('/get-all-cards', async (req, res) => {
 router.post('/add-card', async (req, res) => {
     const card = req.body;
 
-    if (!card.name || !card.type || !card.cost || !card.power || !card.hp || !card.uppower || !card.uphp || !card.aspect || !card.arena || !card.trait || !card.rarity || !card.set || !card.artist || !card.cardno || !card.image) {
+    if (!card.name) {
         return res.status(400).json({ success: false, message: 'Please provide all card attributes' });
     }
 

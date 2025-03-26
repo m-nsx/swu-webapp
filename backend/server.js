@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import os from 'os';
+import cors from 'cors';
 
 import { connectDB } from './config/db.js';
 import cardRoutes from './routes/card.route.js';
@@ -10,7 +11,9 @@ dotenv.config();
 
 // Create an express application
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.BACK_PORT || 5000;
+
+app.use(cors());
 
 // Allow the server to accept JSON data in the body of the request for parsing
 app.use(express.json());

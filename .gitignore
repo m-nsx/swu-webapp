@@ -19,6 +19,7 @@
 .env.test.local
 .env.production.local
 
+# backups and archives
 swu-webapp.rar
 swu-webapp-back260325-0129.rar
 
