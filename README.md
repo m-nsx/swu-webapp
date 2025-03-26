@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# PROJET WEB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## To run the project
 
-## Available Scripts
+1. Clone the repo
 
-In the project directory, you can run:
+```
+git clone https://github.com/m-nsx/swu-webapp.git
+```
 
-### `npm start`
+2. Start backend (type command in root folder)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+npm run dev
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Start frontend (type command in frontend folder)
 
-### `npm test`
+```
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<sub> Note : I'll try to make the server startable with a single command... </sub>
 
-### `npm run build`
+4. Access the server at http://localhost:3000 or take a look at the logs to find out the address on the local network
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🤯 Troubleshooting 🤯
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If the port is already in use, you can free it by closing the process using it.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Find the process
 
-### `npm run eject`
+```
+netstat -ano | findstr :<port>
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Kill the process
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+taskkill /PID <PID> /F
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Information for dev
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please commit to dev branch
