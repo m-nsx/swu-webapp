@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import os from 'os';
 
 import { connectDB } from './config/db.js';
 import cardRoutes from './routes/card.route.js';
@@ -9,6 +10,7 @@ dotenv.config();
 
 // Create an express application
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Allow the server to accept JSON data in the body of the request for parsing
 app.use(express.json());
@@ -16,8 +18,13 @@ app.use(express.json());
 // Use the card routes for requests
 app.use('/api', cardRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     connectDB();
-    console.log('Server running on port 3000');
-});
+    console.log('Server accessible on http://localhost:' + PORT + ' if you are on local machine');
+    const networkInterfaces = os.networkInterfaces();
+    const localIp = Object.values(networkInterfaces)
+        .flat()
+        .find((iface) => iface.family === 'IPv4' && !iface.internal).address;
 
+    console.log(`Server accessible on http://${localIp}:${PORT} for devices on the same local network`);
+});
