@@ -1,0 +1,50 @@
+.card-fetch-container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #cccccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-fetch-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.card-fetch-body {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333333;
+    font-weight: normal;
+}
+
+.card-fetch-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-fetch-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.card-fetch-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.card-fetch-message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333333;
+}
