@@ -28,14 +28,6 @@ const cardSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-    uppower: {
-        type: Number,
-        required: false
-    },
-    uphp: {
-        type: Number,
-        required: false
-    },
     aspect: {
         type: String,
         required: false
@@ -68,6 +60,14 @@ const cardSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    favorite: {
+        type: Boolean,
+        required: false
+    },
+    collection: {
+        type: Boolean,
+        required: false
+    }
 }, {
     timestamps: true
 });

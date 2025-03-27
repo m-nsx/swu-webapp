@@ -9,6 +9,7 @@ import CardFetch from './components/card/CardFetch';
 import CardAdd from './components/card/CardAdd';
 import DeckManager from './components/deck/DeckManager';
 import SearchEngine from './components/search/SearchEngine';
+import CardCollection from './components/card/CardCollection';
 
 const App = () => {
 
@@ -42,6 +43,14 @@ const App = () => {
         }
     };
 
+    const handleCardUpdated = (updatedCard) => {
+        setCards((prevCards) =>
+            prevCards.map((card) =>
+                card._id === updatedCard._id ? updatedCard : card
+            )
+        );
+    };
+
     return (
         <Router>
             <div>
@@ -49,10 +58,10 @@ const App = () => {
                 <nav className="navbar">
                     <ul>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/index-management">Card management</Link></li>
-                        <li><Link to="/index">Card list</Link></li>
-                        <li><Link to="/decks">Deck Management</Link></li>
-                        <li><Link to="/search">Search Engine</Link></li>
+                        <li><Link to="/index-management">Database</Link></li>
+                        <li><Link to="/index">Collection</Link></li>
+                        <li><Link to="/decks">Decks</Link></li>
+                        <li><Link to="/search">Search</Link></li>
                     </ul>
                 </nav>
 
@@ -60,23 +69,37 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={
                         <>
-                            <h1>Home</h1>
+                            <h1 className='title'>SWU CM</h1>
+                            <h2 className='subtitle'>Star Wars Unlimited Collection Manager</h2>
                         </>
                     } />
                     <Route path="/index-management" element={
-                        <div style={{ display: 'flex', justifyContent: 'center', padding: '10px', gap: '10px' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '10px', gap: '20px' }}>
                             <div style={{ width: '45%' }}>
                                 <CardAdd onCardAdded={handleCardAdded} />
                             </div>
                             <div style={{ width: '45%' }}>
                                 <CardFetch />
                             </div>
-                        </div>
+                            <div style={{ width: '100%', marginTop: '20px' }}>
+                                <CardList
+                                    cards={cards}
+                                    setCards={setCards}
+                                    onCardDeleted={handleCardDeleted}
+                                    onCardUpdated={handleCardUpdated} // Pass the update handler
+                                    onDeleteAll={handleDeleteAll}
+                                />
+                            </div>
+                        </div>                    
                     } />
                     <Route path="/index" element={
-                        <>
-                            <CardList cards={cards} onCardDeleted={handleCardDeleted} onDeleteAll={handleDeleteAll} />
-                        </>
+                        <CardCollection
+                            cards={cards}
+                            setCards={setCards}
+                            onCardDeleted={handleCardDeleted}
+                            onCardUpdated={handleCardUpdated} // Pass the update handler
+                            onDeleteAll={handleDeleteAll}
+                        />
                     } />
                     <Route path="/decks" element={<DeckManager />} />
                     <Route path="/search" element={<SearchEngine />} />

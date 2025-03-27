@@ -3,28 +3,38 @@ import { addCard, getAllCards, updateCard } from '../../api';
 
 import './CardFetch.css';
 import ConfirmModal from '../ConfirmModal';
+import InfoModal from '../InfoModal';
 import axios from 'axios';
+import CardExtension from './CardExtension';
 
 const CardFetch = ({ onCardsFetched }) => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
-    const [showModal, setShowModal] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showInfoModal, setShowInfoModal] = useState(false);
+    const [extensions, setExtensions] = useState([]);
 
     const fetchAndAddCards = async () => {
         setLoading(true);
         setMessage('');
 
         try {
+            if (extensions.length === 0) {
+                console.error('No extensions selected.');
+                setLoading(false);
+                return;
+            }
+
             // Fetch existing cards from the database
             const existingCardsResponse = await getAllCards();
             const existingCards = existingCardsResponse.data.data;
 
-            // Fetch cards from the official API
-            const response = await axios.get('/cards/sor');
+            // Fetch cards from the official API based on selected extensions
+            const response = await axios.get(`/cards/${extensions.join(',')}`);
             const cards = response.data.data;
 
             if (!cards || cards.length === 0) {
-                console.error('No cards found in the SOR collection.');
+                console.error('No cards found for the selected extensions.');
                 setLoading(false);
                 return;
             }
@@ -34,11 +44,9 @@ const CardFetch = ({ onCardsFetched }) => {
                 const parsedCard = {
                     name: card.Name || 'Unknown',
                     type: card.Type || 'Unknown',
-                    cost: parseInt(card.Cost, 10) || -1,
-                    power: parseInt(card.Power, 10) || -1,
-                    hp: parseInt(card.HP, 10) || -1,
-                    uppower: -1,
-                    uphp: -1,
+                    cost: parseInt(card.Cost, 10),
+                    power: parseInt(card.Power, 10),
+                    hp: parseInt(card.HP, 10),
                     aspect: card.Aspects ? card.Aspects.join(', ') : 'Unknown',
                     arena: card.Arenas ? card.Arenas.join(', ') : 'Unknown',
                     trait: card.Traits ? card.Traits.join(', ') : 'Unknown',
@@ -49,22 +57,10 @@ const CardFetch = ({ onCardsFetched }) => {
                     image: card.FrontArt || 'https://placehold.co/468x652',
                 };
 
-                const existingCard = existingCards.find((c) => 
+                // Check if the card already exists
+                const existingCard = existingCards.find((c) =>
                     c.name === parsedCard.name &&
-                    c.type === parsedCard.type &&
-                    c.cost === parsedCard.cost &&
-                    c.power === parsedCard.power &&
-                    c.hp === parsedCard.hp &&
-                    c.uppower === parsedCard.uppower &&
-                    c.uphp === parsedCard.uphp &&
-                    c.aspect === parsedCard.aspect &&
-                    c.arena === parsedCard.arena &&
-                    c.trait === parsedCard.trait &&
-                    c.rarity === parsedCard.rarity &&
-                    c.set === parsedCard.set &&
-                    c.artist === parsedCard.artist &&
-                    c.cardno === parsedCard.cardno &&
-                    c.image === parsedCard.image
+                    c.cardno === parsedCard.cardno
                 );
 
                 if (existingCard) {
@@ -94,28 +90,40 @@ const CardFetch = ({ onCardsFetched }) => {
         } catch (error) {
             console.error('Error fetching cards from the API:', error);
         } finally {
+            setShowInfoModal(true);
             setLoading(false);
         }
     };
 
     const handleConfirm = () => {
-        setShowModal(false);
+        setShowConfirmModal(false);
         fetchAndAddCards();
+    };
+
+    const handleRefresh = () => {
+        window.location = window.location; // Hard refresh to update the card list
+        setShowInfoModal(false);
     };
 
     return (
         <div className="card-fetch-container">
             <h2 className="card-fetch-title">Update card index from SWUDB</h2>
-            <h4 className="card-fetch-body">Call SWUDB API to retrieve, compare and update local database</h4>
-            <button className="card-fetch-button" onClick={() => setShowModal(true)} disabled={loading}>
+            <h4 className="card-fetch-subtitle">Retrieve cards from SWUDB web API</h4>
+            <CardExtension onExtensionsChange={setExtensions} />
+            <button className="card-fetch-button" onClick={() => setShowConfirmModal(true)} disabled={loading}>
                 {loading ? 'Loading...' : 'Update Index'}
             </button>
             {message && <p className="card-fetch-message">{message}</p>}
             <ConfirmModal
-                show={showModal}
-                onClose={() => setShowModal(false)}
+                show={showConfirmModal}
+                onClose={() => setShowConfirmModal(false)}
                 onConfirm={handleConfirm}
                 message="This action may take a while and you will need to refresh this page."
+            />
+            <InfoModal
+                show={showInfoModal}
+                onClose={handleRefresh}
+                message="Card index has been updated."
             />
         </div>
     );

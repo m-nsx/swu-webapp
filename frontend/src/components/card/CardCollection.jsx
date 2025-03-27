@@ -10,7 +10,7 @@ import mongoose from 'mongoose';
 import ConfirmModal from '../ConfirmModal';
 import InfoModal from '../InfoModal';
 import DetailModal from './CardDetail';
-import './CardList.css';
+import './CardCollection.css';
 
 const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }) => {
     const [showModal, setShowModal] = useState(false);
@@ -93,6 +93,7 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
     });
 
     const filteredCards = sortedCards.filter(card =>
+        card.collection === true &&
         card.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
         (sortCriteria !== 'favorites' || card.favorite)
     );
@@ -149,8 +150,8 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
 
     return (
         <div className="card-list">
-            <h2 className="section-title">Card Database</h2>
-            <h3 className="section-subtitle">You have indexed {cards.length} cards</h3>
+            <h2 className="section-title">My Collection</h2>
+            <h3 className="section-subtitle">You have collected {cards.length} cards</h3>
             <div className="controls">
                 <div className="sort-controls">
                     <label htmlFor="sort">Sort by:</label>
@@ -195,9 +196,6 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                         <p className="card-detail"><strong>Card No:</strong> {card.cardno}</p>
                     </div>
                     <div className="button-group">
-                        <button className="delete-button" onClick={() => handleDelete(card._id)}>
-                            <HiTrash />
-                        </button>
                         <button
                             className={`favorite-button ${card.favorite ? 'favorite' : ''}`}
                             onClick={() => handleFavorite(card._id)}
@@ -215,7 +213,7 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                         className={`collection-button ${card.collection ? 'in-collection' : ''}`}
                         onClick={() => handleCollectionToggle(card._id)}
                     >
-                        {card.collection ? 'In Collection' : 'Add to Collection'}
+                        {card.collection ? 'Remove from collection' : 'N.A'}
                     </button>
                     </div>
                 ))}
