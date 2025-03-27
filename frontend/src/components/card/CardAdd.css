@@ -1,0 +1,51 @@
+.add-form {
+    max-width: 100%;
+    margin: 0px auto;
+    padding: 10px;
+    background-color: #cccccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(85, 85, 85, 0.5);
+    outline: none;
+}
+
+.add-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.card-add-title {
+    font-size: 24px;
+    margin-bottom: 10px; /* Réduction de la marge inférieure */
+    color: #333333;
+    padding-bottom: 10px;
+}
