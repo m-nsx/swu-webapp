@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import os from 'os';
 import cors from 'cors';
 
-import { connectDB } from './config/db.js';
+import connectDB from './config/db.js';
 import cardRoutes from './routes/card.route.js';
 
 // Load environment variables from the .env file
