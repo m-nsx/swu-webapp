@@ -218,9 +218,6 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                     </div>
                 ))}
             </div>
-            {cards.length > 0 && (
-                <button className="delete-all-button" onClick={handleDeleteAll}>Delete All Cards</button>
-            )}
             <ConfirmModal
                 show={showModal}
                 onClose={() => setShowModal(false)}
