@@ -12,13 +12,13 @@ This is a small MERN webapp designed to help you manage your Star Wars Unlimited
 git clone https://github.com/m-nsx/swu-webapp.git
 ```
 
-2. Install all required ressources (run command in both root and frontend folders)
+2. Install packages (run in both root folder and frontend folder)
 
 ```
 npm install
 ```
 
-3. Start backend (run command in root folder)
+3. Start backend (run in root folder)
 
 ```
 npm run dev
