@@ -187,11 +187,38 @@
     color: #ffffff;
 }
 
-.collection-button {
-    width: 100%;
+.collection-remove-button {
+    width: 70%;
     padding: 10px;
     background-color: #cccccc;
     color: #333333;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.collection-remove-button.in-collection {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.collection-remove-button:hover {
+    background-color: #bbbbbb;
+}
+
+.collection-remove-button.in-collection:hover {
+    background-color: #218838;
+}
+
+.deck-button {
+    width: 30%;
+    height: 40px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 6px;
     font-size: 14px;
@@ -200,15 +227,6 @@
     margin-top: 10px;
 }
 
-.collection-button.in-collection {
-    background-color: #28a745;
-    color: #ffffff;
-}
-
-.collection-button:hover {
-    background-color: #bbbbbb;
-}
-
-.collection-button.in-collection:hover {
-    background-color: #218838;
+.deck-button:hover {
+    background-color: #0056b3;
 }

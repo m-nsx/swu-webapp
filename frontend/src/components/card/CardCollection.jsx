@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { deleteCard, updateCard } from '../../api'; // Import de updateCard
 import { HiDocumentSearch } from "react-icons/hi";
-import { HiTrash } from "react-icons/hi";
 import { HiViewList } from "react-icons/hi";
 import { HiBookmark } from "react-icons/hi";
 
@@ -210,7 +209,7 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                         </button>
                     </div>
                     <button
-                        className={`collection-button ${card.collection ? 'in-collection' : ''}`}
+                        className={`collection-remove-button ${card.collection ? 'in-collection' : ''}`}
                         onClick={() => handleCollectionToggle(card._id)}
                     >
                         {card.collection ? 'Remove from collection' : 'N.A'}

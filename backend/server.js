@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import connectDB from './config/db.js';
 import cardRoutes from './routes/card.route.js';
+import deckRoutes from './routes/deck.route.js';
 
 // Load environment variables from the .env file
 dotenv.config();
@@ -18,8 +19,7 @@ app.use(cors());
 // Allow the server to accept JSON data in the body of the request for parsing
 app.use(express.json());
 
-// Use the card routes for requests
-app.use('/api', cardRoutes);
+app.use('/api', cardRoutes, deckRoutes);
 
 app.listen(PORT, () => {
     connectDB();
