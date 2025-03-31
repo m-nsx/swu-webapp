@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllCards, deleteCard } from './api';
+import { getAllCards, deleteCard, getAllDecks } from './api';
 
 import './App.css';
 import React from 'react';
@@ -10,18 +10,26 @@ import CardAdd from './components/card/CardAdd';
 import DeckManager from './components/deck/DeckManager';
 import SearchEngine from './components/search/SearchEngine';
 import CardCollection from './components/card/CardCollection';
+import DeckList from './components/deck/DeckList';
 
 const App = () => {
 
     const [cards, setCards] = useState([]);
+    const [decks, setDecks] = useState([]);
 
     const fetchCards = async () => {
         const response = await getAllCards();
         setCards(response.data.data);
     };
 
+    const fetchDecks = async () => {
+        const response = await getAllDecks();
+        setDecks(response.data.data);
+    };
+
     useEffect(() => {
         fetchCards();
+        fetchDecks();
     }, []);
 
     const handleCardAdded = () => {
@@ -49,6 +57,14 @@ const App = () => {
                 card._id === updatedCard._id ? updatedCard : card
             )
         );
+    };
+
+    const handleDeckDeleted = () => {
+        fetchDecks();
+    };
+
+    const handleDeleteAllDecks = () => {
+        setDecks([]);
     };
 
     return (
@@ -97,11 +113,18 @@ const App = () => {
                             cards={cards}
                             setCards={setCards}
                             onCardDeleted={handleCardDeleted}
-                            onCardUpdated={handleCardUpdated} // Pass the update handler
+                            onCardUpdated={handleCardUpdated}
                             onDeleteAll={handleDeleteAll}
                         />
                     } />
-                    <Route path="/decks" element={<DeckManager />} />
+                    <Route path="/decks" element={
+                        <DeckList
+                            decks={decks}
+                            setDecks={setDecks}
+                            onDeckDeleted={handleDeckDeleted}
+                            onDeleteAll={handleDeleteAllDecks}
+                        />
+                    } />
                     <Route path="/search" element={<SearchEngine />} />
                 </Routes>
             </div>
