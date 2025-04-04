@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllCards, deleteCard, getAllDecks } from './api';
+import { getAllCards, deleteCard, getAllDecks, deleteDeck } from './api';
 
 import './App.css';
 import React from 'react';
@@ -11,6 +11,7 @@ import SearchEngine from './components/search/SearchEngine';
 import CardCollection from './components/card/CardCollection';
 import DeckList from './components/deck/DeckList';
 import DeckAdd from './components/deck/DeckAdd';
+import SusButton from './components/fun/SusButton';
 
 const App = () => {
 
@@ -60,11 +61,18 @@ const App = () => {
     };
 
     const handleDeckDeleted = () => {
-        fetchDecks();
+        fetchDecks(); // Reload decks from the API
     };
 
-    const handleDeleteAllDecks = () => {
-        setDecks([]);
+    const handleDeleteAllDecks = async () => {
+        try {
+            for (const deck of decks) {
+                await deleteDeck(deck._id);
+            }
+            fetchDecks(); // Reload decks from the API
+        } catch (error) {
+            console.error('Error deleting all decks:', error);
+        }
     };
 
     const handleDeckAdded = () => {
@@ -91,6 +99,7 @@ const App = () => {
                         <>
                             <h1 className='title'>SWU CM</h1>
                             <h2 className='subtitle'>Star Wars Unlimited Collection Manager</h2>
+                            <SusButton />
                         </>
                     } />
                     <Route path="/index-management" element={
@@ -106,7 +115,7 @@ const App = () => {
                                     cards={cards}
                                     setCards={setCards}
                                     onCardDeleted={handleCardDeleted}
-                                    onCardUpdated={handleCardUpdated} // Pass the update handler
+                                    onCardUpdated={handleCardUpdated}
                                     onDeleteAll={handleDeleteAll}
                                 />
                             </div>
@@ -119,7 +128,7 @@ const App = () => {
                             onCardDeleted={handleCardDeleted}
                             onCardUpdated={handleCardUpdated}
                             onDeleteAll={handleDeleteAll}
-                            decks={decks} // Pass decks to CardCollection
+                            decks={decks}
                         />
                     } />
                     <Route path="/decks" element={
