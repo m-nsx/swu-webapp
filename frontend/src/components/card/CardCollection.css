@@ -124,7 +124,7 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.show-id-button {
+.deck-button {
     width: 30%;
     height: 40px;
     padding: 10px;
@@ -138,7 +138,7 @@
     margin-top: 10px;
 }
 
-.show-id-button:hover {
+.deck-button:hover {
     background-color: #0056b3;
 }
 
@@ -164,7 +164,7 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .favorite-button {
@@ -188,13 +188,14 @@
 }
 
 .collection-remove-button {
-    width: 70%;
+    width: 75%;
+    height: 40px;
     padding: 10px;
     background-color: #cccccc;
     color: #333333;
     border: none;
     border-radius: 6px;
-    font-size: 11px;
+    font-size: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 10px;
@@ -213,9 +214,9 @@
     background-color: #218838;
 }
 
-.deck-button {
-    width: 30%;
-    height: 40px;
+.show-id-button {
+    width: 20%;
+    aspect-ratio: 1/1;
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -227,6 +228,6 @@
     margin-top: 10px;
 }
 
-.deck-button:hover {
+.show-id-button:hover {
     background-color: #0056b3;
 }

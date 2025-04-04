@@ -11,6 +11,7 @@ import DeckManager from './components/deck/DeckManager';
 import SearchEngine from './components/search/SearchEngine';
 import CardCollection from './components/card/CardCollection';
 import DeckList from './components/deck/DeckList';
+import DeckAdd from './components/deck/DeckAdd';
 
 const App = () => {
 
@@ -67,6 +68,10 @@ const App = () => {
         setDecks([]);
     };
 
+    const handleDeckAdded = () => {
+        fetchDecks();
+    };
+
     return (
         <Router>
             <div>
@@ -115,15 +120,23 @@ const App = () => {
                             onCardDeleted={handleCardDeleted}
                             onCardUpdated={handleCardUpdated}
                             onDeleteAll={handleDeleteAll}
+                            decks={decks} // Pass decks to CardCollection
                         />
                     } />
                     <Route path="/decks" element={
-                        <DeckList
-                            decks={decks}
-                            setDecks={setDecks}
-                            onDeckDeleted={handleDeckDeleted}
-                            onDeleteAll={handleDeleteAllDecks}
-                        />
+                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '10px', gap: '20px' }}>
+                            <div style={{ width: '45%' }}>
+                                <DeckAdd onDeckAdded={handleDeckAdded} />
+                            </div>
+                            <div style={{ width: '100%', marginTop: '20px' }}>
+                                <DeckList
+                                    decks={decks}
+                                    setDecks={setDecks}
+                                    onDeckDeleted={handleDeckDeleted}
+                                    onDeleteAll={handleDeleteAllDecks}
+                                />
+                            </div>
+                        </div>
                     } />
                     <Route path="/search" element={<SearchEngine />} />
                 </Routes>

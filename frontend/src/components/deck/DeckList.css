@@ -22,14 +22,36 @@
     color: #777777;
 }
 
+.search-controls input {
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-controls input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 .deck-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 100%));
     gap: 10px;
 }
 
 .deck-tile {
     padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 100%;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -42,7 +64,7 @@
 
 .deck-tile:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    scale: 1.02;
+    scale: 1.01;
 }
 
 .deck-image {
@@ -54,7 +76,7 @@
 
 .deck-title {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: #007bff;
 }
 
@@ -73,4 +95,46 @@
 
 .deck-detail strong {
     color: #333333;
+}
+
+.button-group {
+    justify-content: right;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.delete-deck-button {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    padding: 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
+}
+
+.delete-deck-button:hover {
+    background-color: #cc0000;
+}
+
+.show-deck-id-button {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    padding: 0px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
+}
+
+.show-deck-id-button:hover {
+    background-color: #0056b3;
 }

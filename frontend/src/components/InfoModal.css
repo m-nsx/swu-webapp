@@ -12,16 +12,21 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.modal-content {
-    background: white;
+.modal-info-content {
+    background: #ffffff;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
     z-index: 1001;
 }
 
-.modal-actions {
+.modal-info-actions {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .modal-button-info {
@@ -29,7 +34,7 @@
     padding: 10px 20px;
     border: none;
     background: #007bff;
-    color: white;
+    color: #ffffff;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -43,7 +48,7 @@
     padding: 10px 20px;
     border: none;
     background: #ff4d4d;
-    color: white;
+    color: #ffffff;
     cursor: pointer;
     border-radius: 5px;
 }
