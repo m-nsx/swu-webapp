@@ -7,7 +7,6 @@ import React from 'react';
 import CardList from './components/card/CardList';
 import CardFetch from './components/card/CardFetch';
 import CardAdd from './components/card/CardAdd';
-import DeckManager from './components/deck/DeckManager';
 import SearchEngine from './components/search/SearchEngine';
 import CardCollection from './components/card/CardCollection';
 import DeckList from './components/deck/DeckList';

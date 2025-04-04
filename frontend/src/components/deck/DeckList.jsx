@@ -22,29 +22,11 @@ const DeckList = ({ decks, setDecks, onDeckDeleted, onDeleteAll, onDeckUpdated }
     );
 
     const handleDelete = async (id) => {
-        const deck = decks.find(deck => deck._id === id);
-        if (deck.cards && deck.cards.trim() !== '') {
-            setConfirmDeleteDeck({ show: true, deckId: id });
-        } else {
-            try {
-                await deleteDeck(id);
-                setDecks(decks.filter(deck => deck._id !== id));
-                onDeckDeleted();
-            } catch (error) {
-                console.error('Error deleting deck:', error);
-            }
-        }
-    };
-
-    const confirmDeleteDeckAction = async () => {
         try {
-            await deleteDeck(confirmDeleteDeck.deckId);
-            setDecks(decks.filter(deck => deck._id !== confirmDeleteDeck.deckId)); // Update state to remove the deleted deck
+            await deleteDeck(id);
             onDeckDeleted();
         } catch (error) {
             console.error('Error deleting deck:', error);
-        } finally {
-            setConfirmDeleteDeck({ show: false, deckId: null });
         }
     };
 
@@ -105,12 +87,6 @@ const DeckList = ({ decks, setDecks, onDeckDeleted, onDeleteAll, onDeckUpdated }
                 onClose={() => setShowModal(false)}
                 onConfirm={confirmDeleteAll}
                 message="This action cannot be undone. Are you sure you want to delete all decks ?"
-            />
-            <ConfirmModal
-                show={confirmDeleteDeck.show}
-                onClose={() => setConfirmDeleteDeck({ show: false, deckId: null })}
-                onConfirm={confirmDeleteDeckAction}
-                message="This deck is not empty. Are you sure you want to delete it ?"
             />
             <InfoModal
                 show={infoModal.show}

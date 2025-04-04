@@ -66,9 +66,12 @@ router.put('/update-deck/:id', async (req, res) => {
 // DELETE request to delete a deck by its id
 router.delete('/delete-deck/:id', async (req, res) => {
     const { id } = req.params;
-
+    
     try {
-        await Deck.findByIdAndDelete(id);
+        const deletedDeck = await Deck.findByIdAndDelete(id);
+        if (!deletedDeck) {
+            return res.status(404).json({ success: false, message: 'Deck not found' });
+        }
         res.status(200).json({ success: true, message: 'Deck deleted' });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
