@@ -1,6 +1,6 @@
-.card-fetch-container {
+.test-api-container {
     max-width: 100%;
-    margin: 0px auto;
+    margin: 20px auto;
     padding: 10px;
     background-color: #cccccc;
     border-radius: 12px;
@@ -8,28 +8,27 @@
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
-
-.card-fetch-title {
+.test-api-title {
     font-size: 24px;
     margin-bottom: 10px;
     color: #333333;
 }
 
-.card-fetch-subtitle {
+.test-api-subtitle {
     font-size: 16px;
     margin-bottom: 10px;
     color: #333333;
     font-weight: normal;
 }
 
-.card-fetch-body {
+.test-api-body {
     font-size: 16px;
     margin-bottom: 20px;
     color: #333333;
     font-weight: normal;
 }
 
-.card-fetch-button {
+.test-api-button {
     width: 20%;
     min-width: 150px;
     padding: 10px;
@@ -42,16 +41,16 @@
     transition: background-color 0.3s ease;
 }
 
-.card-fetch-button:disabled {
+.test-api-button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
 
-.card-fetch-button:hover:not(:disabled) {
+.test-api-button:hover:not(:disabled) {
     background-color: #0056b3;
 }
 
-.card-fetch-message {
+.test-api-message {
     margin-top: 20px;
     font-size: 16px;
     color: #333333;

@@ -101,7 +101,7 @@ const CardFetch = ({ onCardsFetched }) => {
     };
 
     const handleRefresh = () => {
-        window.location = window.location; // Hard refresh to update the card list
+        window.location = window.location; // Refresh
         setShowInfoModal(false);
     };
 

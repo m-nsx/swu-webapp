@@ -28,7 +28,7 @@ const DeckAdd = ({ onDeckAdded }) => {
                     className="input-field"
                     required
                 />
-                <button type="submit" className="add-button">Add Deck</button>
+                <button type="submit" className="add-deck-button">Add Deck</button>
             </form>
             <InfoModal
                 show={showModal}

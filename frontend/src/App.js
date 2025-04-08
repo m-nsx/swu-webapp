@@ -11,7 +11,7 @@ import SearchEngine from './components/search/SearchEngine';
 import CardCollection from './components/card/CardCollection';
 import DeckList from './components/deck/DeckList';
 import DeckAdd from './components/deck/DeckAdd';
-import SusButton from './components/fun/SusButton';
+import TestApi from './components/general/TestApi';
 
 const App = () => {
 
@@ -82,7 +82,6 @@ const App = () => {
     return (
         <Router>
             <div>
-                {/* Bandeau de navigation */}
                 <nav className="navbar">
                     <ul>
                         <li><Link to="/">Home</Link></li>
@@ -93,13 +92,11 @@ const App = () => {
                     </ul>
                 </nav>
 
-                {/* Contenu des pages */}
                 <Routes>
                     <Route path="/" element={
                         <>
                             <h1 className='title'>SWU CM</h1>
                             <h2 className='subtitle'>Star Wars Unlimited Collection Manager</h2>
-                            <SusButton />
                         </>
                     } />
                     <Route path="/index-management" element={
@@ -109,6 +106,7 @@ const App = () => {
                             </div>
                             <div style={{ width: '45%' }}>
                                 <CardFetch />
+                                <TestApi />
                             </div>
                             <div style={{ width: '100%', marginTop: '20px' }}>
                                 <CardList
