@@ -43,7 +43,7 @@ const CardAdd = ({ onCardAdded }) => {
             </form>
             <InfoModal
                 show={showModal}
-                onClose={() => setShowModal(false)} // Close the modal
+                onClose={() => setShowModal(false)}
                 message="Card successfully added."
             />
         </>

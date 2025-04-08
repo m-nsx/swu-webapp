@@ -6,6 +6,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
+    position: relative;
 }
 
 .section-title {
@@ -215,16 +216,24 @@
     border-radius: 6px;
     font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    transition: color 0.3s ease;
     margin-top: 10px;
     background-color: #cccccc;
     color: #333333;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .favorite-button.favorite {
     background-color: #ffc107;
     color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.favorite-button:hover {
+    background-color: #bbbbbb;
+}
+
+.favorite-button.favorite:hover {
+    background-color: #e0a800;
 }
 
 .collection-button {
@@ -251,4 +260,24 @@
 
 .collection-button.in-collection:hover {
     background-color: #218838;
+}
+
+.scroll-to-top {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-weight: normal;
+    width: 40px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    background-color: #0056b3;
 }

@@ -1,27 +1,36 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllCards, deleteCard } from './api';
+import { getAllCards, deleteCard, getAllDecks, deleteDeck } from './api';
 
 import './App.css';
 import React from 'react';
 import CardList from './components/card/CardList';
 import CardFetch from './components/card/CardFetch';
 import CardAdd from './components/card/CardAdd';
-import DeckManager from './components/deck/DeckManager';
 import SearchEngine from './components/search/SearchEngine';
 import CardCollection from './components/card/CardCollection';
+import DeckList from './components/deck/DeckList';
+import DeckAdd from './components/deck/DeckAdd';
+import TestApi from './components/general/TestApi';
 
 const App = () => {
 
     const [cards, setCards] = useState([]);
+    const [decks, setDecks] = useState([]);
 
     const fetchCards = async () => {
         const response = await getAllCards();
         setCards(response.data.data);
     };
 
+    const fetchDecks = async () => {
+        const response = await getAllDecks();
+        setDecks(response.data.data);
+    };
+
     useEffect(() => {
         fetchCards();
+        fetchDecks();
     }, []);
 
     const handleCardAdded = () => {
@@ -51,10 +60,28 @@ const App = () => {
         );
     };
 
+    const handleDeckDeleted = () => {
+        fetchDecks(); // Reload decks from the API
+    };
+
+    const handleDeleteAllDecks = async () => {
+        try {
+            for (const deck of decks) {
+                await deleteDeck(deck._id);
+            }
+            fetchDecks(); // Reload decks from the API
+        } catch (error) {
+            console.error('Error deleting all decks:', error);
+        }
+    };
+
+    const handleDeckAdded = () => {
+        fetchDecks();
+    };
+
     return (
         <Router>
             <div>
-                {/* Bandeau de navigation */}
                 <nav className="navbar">
                     <ul>
                         <li><Link to="/">Home</Link></li>
@@ -65,7 +92,6 @@ const App = () => {
                     </ul>
                 </nav>
 
-                {/* Contenu des pages */}
                 <Routes>
                     <Route path="/" element={
                         <>
@@ -80,13 +106,14 @@ const App = () => {
                             </div>
                             <div style={{ width: '45%' }}>
                                 <CardFetch />
+                                <TestApi />
                             </div>
                             <div style={{ width: '100%', marginTop: '20px' }}>
                                 <CardList
                                     cards={cards}
                                     setCards={setCards}
                                     onCardDeleted={handleCardDeleted}
-                                    onCardUpdated={handleCardUpdated} // Pass the update handler
+                                    onCardUpdated={handleCardUpdated}
                                     onDeleteAll={handleDeleteAll}
                                 />
                             </div>
@@ -97,11 +124,26 @@ const App = () => {
                             cards={cards}
                             setCards={setCards}
                             onCardDeleted={handleCardDeleted}
-                            onCardUpdated={handleCardUpdated} // Pass the update handler
+                            onCardUpdated={handleCardUpdated}
                             onDeleteAll={handleDeleteAll}
+                            decks={decks}
                         />
                     } />
-                    <Route path="/decks" element={<DeckManager />} />
+                    <Route path="/decks" element={
+                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '10px', gap: '20px' }}>
+                            <div style={{ width: '45%' }}>
+                                <DeckAdd onDeckAdded={handleDeckAdded} />
+                            </div>
+                            <div style={{ width: '100%', marginTop: '20px' }}>
+                                <DeckList
+                                    decks={decks}
+                                    setDecks={setDecks}
+                                    onDeckDeleted={handleDeckDeleted}
+                                    onDeleteAll={handleDeleteAllDecks}
+                                />
+                            </div>
+                        </div>
+                    } />
                     <Route path="/search" element={<SearchEngine />} />
                 </Routes>
             </div>

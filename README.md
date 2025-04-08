@@ -1,6 +1,6 @@
 # SWU Collection Manager
 
-This is a small MERN webapp designed to help you manage your Star Wars Unlimited collection. With local storage for your cards, collection and deck management features and an auto-update card list. You can even add your own personalized cards !
+This is a small webapp designed to help you manage your Star Wars Unlimited collection. With local storage for your cards, collection and deck management features and an auto-update card list. You can even add your very own personalized cards !
 
 <sub>*Note: the project is still under development, so bugs, instability and data loss may occur. We recommend that you download it for discovery purposes only for the moment.*</sub>
 
@@ -18,16 +18,10 @@ git clone https://github.com/m-nsx/swu-webapp.git
 npm install
 ```
 
-3. Start backend (run in root folder)
+3. Start the server (run in root folder)
 
 ```
-npm run dev
-```
-
-4. Start frontend (run command in frontend folder)
-
-```
-npm start
+npm run start
 ```
 
 5. Access the server at http://localhost:3000

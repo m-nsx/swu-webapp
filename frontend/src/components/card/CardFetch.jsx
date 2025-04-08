@@ -101,7 +101,7 @@ const CardFetch = ({ onCardsFetched }) => {
     };
 
     const handleRefresh = () => {
-        window.location = window.location; // Hard refresh to update the card list
+        window.location = window.location; // Refresh
         setShowInfoModal(false);
     };
 
@@ -118,7 +118,7 @@ const CardFetch = ({ onCardsFetched }) => {
                 show={showConfirmModal}
                 onClose={() => setShowConfirmModal(false)}
                 onConfirm={handleConfirm}
-                message="This action may take a while and you will need to refresh this page."
+                message="This action may take a while and will overwrite actual data."
             />
             <InfoModal
                 show={showInfoModal}

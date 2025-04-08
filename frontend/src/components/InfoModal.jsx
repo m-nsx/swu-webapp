@@ -1,5 +1,5 @@
 import React from 'react';
-import './ConfirmModal.css';
+import './InfoModal.css'; // Assuming you have a separate CSS file for InfoModal
 
 const InfoModal = ({ show, onClose, message }) => {
     if (!show) {
@@ -8,10 +8,10 @@ const InfoModal = ({ show, onClose, message }) => {
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="modal-info-content">
                 <h2>Info</h2>
                 <p>{message}</p>
-                <div className="modal-actions">
+                <div className="modal-info-actions">
                     <button className="modal-button-info" onClick={onClose}>OK</button>
                 </div>
             </div>

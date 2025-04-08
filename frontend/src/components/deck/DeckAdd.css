@@ -1,6 +1,7 @@
-.add-form {
-    max-width: 100%;
+.add-deck-form {
+    max-width: 95%;
     margin: 0px auto;
+    margin-bottom: 20px;
     padding: 10px;
     background-color: #cccccc;
     border-radius: 12px;
@@ -26,7 +27,7 @@
     outline: none;
 }
 
-.add-button {
+.add-deck-button {
     width: 20%;
     min-width: 150px;
     padding: 10px;
@@ -40,11 +41,11 @@
     margin-top: 10px;
 }
 
-.add-button:hover {
+.add-deck-button:hover {
     background-color: #0056b3;
 }
 
-.card-add-title {
+.deck-add-title {
     font-size: 24px;
     margin-bottom: 10px;
     color: #333333;

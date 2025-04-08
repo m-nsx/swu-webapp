@@ -9,34 +9,35 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    font-family: 'Roboto', sans-serif;
 }
 
-.modal-info-content {
-    background: #ffffff;
+.modal-deckadd-content {
+    background: white;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
     z-index: 1001;
+    width: 300px;
 }
 
-.modal-info-actions {
+.modal-deckadd-actions {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+}
+
+.modal-button-info,
+.modal-button-danger {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .modal-button-info {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border: none;
     background: #007bff;
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 5px;
+    color: white;
 }
 
 .modal-button-info:hover {
@@ -44,15 +45,19 @@
 }
 
 .modal-button-danger {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border: none;
     background: #ff4d4d;
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 5px;
+    color: white;
 }
 
 .modal-button-danger:hover {
     background: #cc0000;
+}
+
+.deck-select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }

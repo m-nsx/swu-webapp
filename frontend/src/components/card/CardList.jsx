@@ -4,6 +4,7 @@ import { HiDocumentSearch } from "react-icons/hi";
 import { HiTrash } from "react-icons/hi";
 import { HiViewList } from "react-icons/hi";
 import { HiBookmark } from "react-icons/hi";
+import { HiArrowUp } from "react-icons/hi";
 
 import mongoose from 'mongoose';
 
@@ -221,7 +222,15 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                 ))}
             </div>
             {cards.length > 0 && (
-                <button className="delete-all-button" onClick={handleDeleteAll}>Delete All Cards</button>
+                <>
+                    <button className="delete-all-button" onClick={handleDeleteAll}>Delete All Cards</button>
+                    <button
+                        className="scroll-to-top"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    >
+                        <HiArrowUp />
+                    </button>
+                </>
             )}
             <ConfirmModal
                 show={showModal}

@@ -1,7 +1,7 @@
 import React from 'react';
-import './ConfirmModal.css';
+import './DeckAssign.css';
 
-const ConfirmModal = ({ show, onClose, onConfirm, message }) => {
+const DeckModal = ({ show, onClose, onConfirm, message }) => {
     if (!show) {
         return null;
     }
@@ -12,12 +12,12 @@ const ConfirmModal = ({ show, onClose, onConfirm, message }) => {
                 <h2>Are you sure ?</h2>
                 <p>{message}</p>
                 <div className="modal-actions">
-                    <button className="modal-button-info" onClick={onConfirm}>CONFIRM</button>
-                    <button className="modal-button-danger" onClick={onClose}>CANCEL</button>
+                    <button className="modal-button-danger" onClick={onConfirm}>CONFIRM</button>
+                    <button className="modal-button-info" onClick={onClose}>CANCEL</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default ConfirmModal;
+export default DeckModal;

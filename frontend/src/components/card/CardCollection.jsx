@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { deleteCard, updateCard } from '../../api'; // Import de updateCard
 import { HiDocumentSearch } from "react-icons/hi";
-import { HiTrash } from "react-icons/hi";
 import { HiViewList } from "react-icons/hi";
 import { HiBookmark } from "react-icons/hi";
+import { HiFolderAdd } from "react-icons/hi";
 
 import mongoose from 'mongoose';
 
 import ConfirmModal from '../ConfirmModal';
 import InfoModal from '../InfoModal';
 import DetailModal from './CardDetail';
+import DeckAddModal from '../DeckAddModal';
 import './CardCollection.css';
 
-const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }) => {
+const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated, decks }) => {
     const [showModal, setShowModal] = useState(false);
     const [sortCriteria, setSortCriteria] = useState('alphabetical');
     const [searchQuery, setSearchQuery] = useState('');
     const [favorites, setFavorites] = useState(new Set()); // Gestion des favoris
     const [infoModal, setInfoModal] = useState({ show: false, message: '' });
     const [detailModal, setDetailModal] = useState({ show: false, card: null });
+    const [showDeckModal, setShowDeckModal] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
 
     const handleSortChange = (e) => {
         setSortCriteria(e.target.value);
@@ -63,10 +66,10 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
         try {
             const card = cards.find(c => c._id === id);
             const updatedCollectionStatus = !card.collection;
-            await updateCard(id, { collection: updatedCollectionStatus }); // Update on the server
+            await updateCard(id, { collection: updatedCollectionStatus });
 
             const updatedCard = { ...card, collection: updatedCollectionStatus };
-            onCardUpdated(updatedCard); // Update the card in the global state
+            onCardUpdated(updatedCard);
         } catch (error) {
             console.error('Error updating collection status:', error);
         }
@@ -148,10 +151,19 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
         }
     };
 
+    const handleAddToDeck = (deckId) => {
+        const card = cards.find((c) => c._id === selectedCard);
+        const deck = decks.find((d) => d._id === deckId);
+        if (deck && card) {
+            deck.cards = deck.cards ? `${deck.cards},${card.name}` : card.name;
+            onCardUpdated(deck);
+        }
+    };
+
     return (
         <div className="card-list">
             <h2 className="section-title">My Collection</h2>
-            <h3 className="section-subtitle">You have collected {cards.length} cards</h3>
+            <h3 className="section-subtitle">You have collected {cards.filter(card => card.collection).length} cards</h3>
             <div className="controls">
                 <div className="sort-controls">
                     <label htmlFor="sort">Sort by:</label>
@@ -205,22 +217,30 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                         <button className="show-detail-button" onClick={() => handleShowDetail(card._id)}>
                             <HiViewList />
                         </button>
+                        <button
+                            className="deck-button"
+                            onClick={() => {
+                                setSelectedCard(card._id);
+                                setShowDeckModal(true);
+                            }}
+                        >
+                            <HiFolderAdd />
+                        </button>
+                    </div>
+                    <div className="button-group">
+                        <button
+                            className={`collection-remove-button ${card.collection ? 'in-collection' : ''}`}
+                            onClick={() => handleCollectionToggle(card._id)}
+                        >
+                            {card.collection ? 'Remove from collection' : 'N.A'}
+                        </button>
                         <button className="show-id-button" onClick={() => handleShowId(card._id)}>
                             <HiDocumentSearch />
                         </button>
                     </div>
-                    <button
-                        className={`collection-button ${card.collection ? 'in-collection' : ''}`}
-                        onClick={() => handleCollectionToggle(card._id)}
-                    >
-                        {card.collection ? 'Remove from collection' : 'N.A'}
-                    </button>
                     </div>
                 ))}
             </div>
-            {cards.length > 0 && (
-                <button className="delete-all-button" onClick={handleDeleteAll}>Delete All Cards</button>
-            )}
             <ConfirmModal
                 show={showModal}
                 onClose={() => setShowModal(false)}
@@ -236,6 +256,12 @@ const CardList = ({ cards, setCards, onCardDeleted, onDeleteAll, onCardUpdated }
                 show={detailModal.show}
                 onClose={() => setDetailModal({ show: false, card: null })}
                 card={detailModal.card}
+            />
+            <DeckAddModal
+                show={showDeckModal}
+                onClose={() => setShowDeckModal(false)}
+                decks={decks} // Pass decks to DeckAddModal
+                onAddToDeck={handleAddToDeck}
             />
         </div>
     );

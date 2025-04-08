@@ -2,7 +2,7 @@ import React from 'react';
 import '../ConfirmModal.css';
 
 const DetailModal = ({ show, onClose, card }) => {
-    if (!show || !card) return null; // Ne rien afficher si `show` est faux ou si `card` est null
+    if (!show || !card) return null;
 
     return (
         <div className="modal-overlay">
